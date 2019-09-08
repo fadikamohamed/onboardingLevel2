@@ -14,11 +14,6 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class ContactController extends AbstractFOSRestController
 {
-    public function getContactById(Response $response)
-    {
-        
-    }
-
     /**
      * @Rest\Post("/contact")
      */
