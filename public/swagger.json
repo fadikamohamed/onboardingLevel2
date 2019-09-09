@@ -1,0 +1,120 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Documentation de l'API de contact",
+    "description": "Permet d'envoyer un mail de contact contenant les informations de l'expéditeur",
+    "version": "1.0.0"
+  },
+  "host": "127.0.0.1:8001",
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "consumes": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
+    "/contact": {
+      "post": {
+        "summary": "Envoi un formulaire de contact",
+        "description": "Envoi un formulaire de contact",
+        "parameters": [
+          {
+            "name": "contactForm",
+            "in": "body",
+            "required": true,
+            "description": "Informations de l'expéditeur, message à envoyer et département de l'entreprise.",
+            "schema": {
+              "type": "object",
+              "required": [
+                "lastname",
+                "firstname",
+                "mail",
+                "message",
+                "division"
+              ],
+              "properties": {
+                "lastname": {
+                  "type": "string",
+                  "enum": [
+                    "myLastname"
+                  ]
+                },
+                "firstname": {
+                  "type": "string",
+                  "enum": [
+                    "myFirstname"
+                  ]
+                },
+                "mail": {
+                  "type": "string",
+                  "format": "email",
+                  "enum": [
+                    "name@mail.com"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token envoyé",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastname": {
+                  "type": "string",
+                  "enum": [
+                    "myLastname"
+                  ]
+                },
+                "firstname": {
+                  "type": "string",
+                  "enum": [
+                    "myFirstname"
+                  ]
+                },
+                "mail": {
+                  "type": "string",
+                  "format": "email",
+                  "enum": [
+                    "name@mail.com"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "integer",
+                  "enum": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
