@@ -14,8 +14,20 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class ContactController extends AbstractFOSRestController
 {
+
     /**
-     * @Rest\Post("/contact")
+     * @Rest\Get("/contactList")
+     */
+    public function ContactList()
+    {
+        $repo = $this->getDoctrine()->getRepository(Contact::class);
+        $contacts = $repo->findAll();
+        return $this->handleView($this->view($contacts));
+    }
+
+
+    /**
+     * @Rest\Post("/contactForm")
      */
     public function Contact(Request $request, ContactNotification $notification, ObjectManager $manager)
     {
@@ -26,6 +38,7 @@ class ContactController extends AbstractFOSRestController
         $form->submit($data);
         if ($form->isSubmitted() && $form->isValid()){
             $notification->notify($contact);
+            $notification->response($contact);
             $manager->persist($contact);
             $manager->flush();
             return $this->handleView($this->view(['status' => 'ok'], Response::HTTP_CREATED));

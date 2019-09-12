@@ -24,4 +24,16 @@ class ContactNotification {
         $this->mailer->send($message);
     }
 
+    public function response(Contact $contact)
+    {
+        $message = (new \Swift_Message('Réponse contact : ' . $contact->getDivision()->getLabel()))
+            ->setFrom($contact->getMail())
+            ->setTo($contact->getDivision()->getMail())
+            ->setReplyTo($contact->getMail())
+            ->setBody($this->renderer->render('email/contactResponse.html.twig', [
+                'contact' => $contact
+            ]), 'text/html');
+        $this->mailer->send($message);
+    }
+
 }

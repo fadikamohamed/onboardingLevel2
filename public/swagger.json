@@ -18,7 +18,7 @@
     "application/xml"
   ],
   "paths": {
-    "/contact": {
+    "/contactForm": {
       "post": {
         "summary": "Envoi un formulaire de contact",
         "description": "Envoi un formulaire de contact",
@@ -109,6 +109,69 @@
                     3,
                     4
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contactList": {
+      "get": {
+        "summary": "Récupere la liste des informations envoyé par le formulaire",
+        "description": "Récupere la liste des informations envoyé par le formulaire",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List reçu",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastname": {
+                  "type": "string",
+                  "enum": [
+                    "lastname"
+                  ]
+                },
+                "firstname": {
+                  "type": "string",
+                  "enum": [
+                    "firstname"
+                  ]
+                },
+                "mail": {
+                  "type": "string",
+                  "format": "email",
+                  "enum": [
+                    "name@mail.com"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "enum": [
+                        1
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "enum": [
+                        "divisionlabel"
+                      ]
+                    },
+                    "mail": {
+                      "type": "string",
+                      "format": "email",
+                      "enum": [
+                        "division@contact.com"
+                      ]
+                    }
+                  }
                 }
               }
             }
